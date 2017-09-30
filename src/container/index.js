@@ -1,5 +1,11 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
 
-import React, { Component , PropTypes } from 'react'
+import React, { Component , PropTypes } from 'react';
+
 import {
 	StyleSheet,
 	View,
@@ -8,17 +14,18 @@ import {
 } from 'react-native';
 
 
-import Loading from '../component/widget/loading';
-
 import {getWidth} from "../widget/deviceInfo";
 
-import Lizard from '../widget/lizard'
+import Lizard from '../widget/lizard';
 
+import Loading from '../component/widget/loading';
 
 export default class Home extends Component {
 
 	constructor(props) {
+
 		super(props);
+
 		this.state = {
 
 		}
@@ -58,7 +65,7 @@ export default class Home extends Component {
 
 		return (
 			<View style={styles.container}>
-				<Text style={{color:'#333',fontSize: getWidth(25)}}>RNqianxi</Text>
+				<Loading/>
 			</View>
 
 
@@ -66,13 +73,11 @@ export default class Home extends Component {
 	}
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor:'#f4f4f8',
 		alignItems:'center',
-
-
 		justifyContent:'center',
 	}
 })
