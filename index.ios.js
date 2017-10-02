@@ -14,11 +14,14 @@ import {
 
 import Index from './src/container/index'
 
+import city from './src/container/city'
+
 import { StackNavigator } from 'react-navigation'
 
 const RNqianxi = StackNavigator({
 
-	index: { screen: Index }
+	index: { screen: Index },
+	city: {screen: city}
 
 })
 

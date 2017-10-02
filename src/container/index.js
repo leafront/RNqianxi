@@ -10,7 +10,8 @@ import {
 	StyleSheet,
 	View,
 	Text,
-	ScrollView
+	ScrollView,
+	TouchableOpacity
 } from 'react-native';
 
 
@@ -63,9 +64,14 @@ export default class Home extends Component {
 
 	render() {
 
+		const { navigate } = this.props.navigation;
+
 		return (
 			<View style={styles.container}>
-				<Loading/>
+				<TouchableOpacity
+					onPress={ () => navigate('city') }>
+					<Text style={styles.hotBtn}>添加爱车</Text>
+				</TouchableOpacity>
 			</View>
 
 
@@ -79,5 +85,9 @@ const styles = StyleSheet.create({
 		backgroundColor:'#f4f4f8',
 		alignItems:'center',
 		justifyContent:'center',
+	},
+	hotBtn: {
+		color:'#ffa028',
+		fontSize: 14
 	}
 })
