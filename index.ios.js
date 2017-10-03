@@ -6,23 +6,9 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+	AppRegistry
 } from 'react-native';
 
-import Index from './src/container/index'
-
-import city from './src/container/city'
-
-import { StackNavigator } from 'react-navigation'
-
-const RNqianxi = StackNavigator({
-
-	index: { screen: Index },
-	city: {screen: city}
-
-})
+import RNqianxi from './src/index';
 
 AppRegistry.registerComponent('RNqianxi', () => RNqianxi);

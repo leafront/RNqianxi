@@ -11,49 +11,42 @@ import {
 	View,
 	Text,
 	ScrollView,
+	StatusBar,
 	TouchableOpacity
 } from 'react-native';
 
 
-import {getWidth} from "../widget/deviceInfo";
+import {getSize} from "../widget/deviceInfo";
 
 import Lizard from '../widget/lizard';
 
 import Loading from '../component/widget/loading';
+
+import Banner from '../component/home/banner';
+
+import Search from '../component/home/search';
 
 export default class Home extends Component {
 
 	constructor(props) {
 
 		super(props);
-
 		this.state = {
-
+			isRefreshing: false,
+			comment: [],
+			page:1,
+			loading:true
 		}
 	}
 	componentDidMount() {
 
-		Lizard.ajax({
-			type: 'POST',
-			url: '/gateway/ord_comment/getOrderHyperCommentList',
-			data: {
-				"minResultCount":5,
-				"page":{
-					"currentPage":1,
-					"pageSize":5
-				},
-				"queryType":1,
-				"recommended":true,
-				"appCode":101,
-				"lcb_client_id":"4b1a5e1f-c146-46ca-9189-41cbf0827f26",
-				"lcb_request_id":"11dc84af-a7f8-440e-af65-658297aedc5a",
-				"lcb_h5_v":"4.0.2"
-			}
-		}).then((data) => {
+		setTimeout(() =>{
 
-			console.log(data);
+			this.setState({
+				loading:false
+			})
+		},200)
 
-		})
 
 
 	}
@@ -64,14 +57,26 @@ export default class Home extends Component {
 
 	render() {
 
-		const { navigate } = this.props.navigation;
+		const {loading} = this.state;
 
 		return (
-			<View style={styles.container}>
-				<TouchableOpacity
-					onPress={ () => navigate('city') }>
-					<Text style={styles.hotBtn}>添加爱车</Text>
-				</TouchableOpacity>
+			<View>
+				{
+					loading ?
+						<Loading /> :
+						<View style={styles.container}>
+							<StatusBar
+							hidden={false} //是否隐藏状态栏。
+							animated={true} //是否需要动画效果
+							translucent={true} //android平台，是否有半透明效果,如果为true,状态栏会浮在下面的布局上面，
+							backgroundColor="white" // android 平台，设置状态栏配背景颜色
+							barStyle="dark-content"//可以取值 'default', 'light-content', 'dark-content'它的默认是default,
+						/>
+							<Banner/>
+							<Search/>
+						</View>
+				}
+
 			</View>
 
 
@@ -82,12 +87,5 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor:'#f4f4f8',
-		alignItems:'center',
-		justifyContent:'center',
-	},
-	hotBtn: {
-		color:'#ffa028',
-		fontSize: 14
 	}
 })

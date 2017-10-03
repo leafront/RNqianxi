@@ -9,8 +9,6 @@ import React, { Component , PropTypes } from 'react';
 import {
 	StyleSheet,
 	View,
-	Text,
-	ScrollView,
 	WebView
 } from 'react-native';
 
@@ -21,36 +19,51 @@ import Lizard from '../widget/lizard';
 
 import Loading from '../component/widget/loading';
 
-export default class Home extends Component {
+import Banner from '../component/home/banner';
+
+export default class My extends Component {
 
 	constructor(props) {
 
 		super(props);
-
 		this.state = {
-
+			isRefreshing: false,
+			comment: [],
+			page:1,
+			loading:true
 		}
 	}
+	componentDidMount() {
 
-	static navigationOptions = {
-		header: null
+		this.setState({
+			loading:false
+		})
+
 	}
-
 	render() {
 
+		const {loading} = this.state;
+
+		console.log(loading)
+
 		return (
-			<WebView
-				source={require('../webView/index.html')}
-				style={styles.webView}
-			/>
+			<View>
+				{
+					loading ?
+						<Loading /> :
+						<View style={styles.container}>
+
+						</View>
+				}
+			</View>
+
 
 		)
 	}
 }
 
 const styles = StyleSheet.create({
-	webView:  {
-		flex:1
-
+	container: {
+		flex: 1,
 	}
 })

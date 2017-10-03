@@ -53,7 +53,7 @@ function ajax (options) {
 
 	}
 
-	headers = Object.assign({headers},options.headers);
+	headers = Object.assign(headers,options.headers);
 
 	var promise  = new Promise ((resolve,reject) => {
 
@@ -78,7 +78,10 @@ function ajax (options) {
 				}
 		}).then((json) => {
 
+			console.log(json)
+
 			resolve(json);
+
 
 		}).catch((error) => {
 

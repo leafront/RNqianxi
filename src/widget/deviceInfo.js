@@ -14,9 +14,9 @@ const winWidth = Dimensions.get('window').width;
 
 const winHeight =  Dimensions.get('window').height;
 
-export function getWidth (width) {
+export function getSize (width) {
 
-	return  width * (winWidth / designWidth);
+	return  Math.floor(width * (winWidth / designWidth));
 
 }
 
